@@ -1,0 +1,773 @@
+( at90usbx7 )
+
+$20 constant pina
+$21 constant ddra
+$22 constant porta
+$23 constant pinb
+$24 constant ddrb
+$25 constant portb
+$26 constant pinc
+$27 constant ddrc
+$28 constant portc
+$29 constant pind
+$2a constant ddrd
+$2b constant portd
+$2c constant pine
+$2d constant ddre
+$2e constant porte
+$2f constant pinf
+$30 constant ddrf
+$31 constant portf
+$35 constant tifr0
+  2 constant ocf0b tifr0 ocf0b 2constant ocf0b-bit
+  1 constant ocf0a tifr0 ocf0a 2constant ocf0a-bit
+  0 constant tov0  tifr0 tov0  2constant tov0-bit
+$36 constant tifr1
+  5 constant icf1  tifr1 icf1  2constant icf1-bit
+  3 constant ocf1c tifr1 ocf1c 2constant ocf1c-bit
+  2 constant ocf1b tifr1 ocf1b 2constant ocf1b-bit
+  1 constant ocf1a tifr1 ocf1a 2constant ocf1a-bit
+  0 constant tov1  tifr1 tov1  2constant tov1-bit
+$37 constant tifr2
+  2 constant ocf2b tifr2 ocf2b 2constant ocf2b-bit
+  1 constant ocf2a tifr2 ocf2a 2constant ocf2a-bit
+  0 constant tov2  tifr2 tov2  2constant tov2-bit
+$38 constant tifr3
+  5 constant icf3  tifr3 icf3  2constant icf3-bit
+  3 constant ocf3c tifr3 ocf3c 2constant ocf3c-bit
+  2 constant ocf3b tifr3 ocf3b 2constant ocf3b-bit
+  1 constant ocf3a tifr3 ocf3a 2constant ocf3a-bit
+  0 constant tov3  tifr3 tov3  2constant tov3-bit
+$3b constant pcifr
+  0 constant pcif0
+$3c constant eifr
+$3d constant eimsk
+$3e constant gpior0
+$3f constant eecr
+  5 constant eepm1
+  4 constant eepm0
+  3 constant eerie
+  2 constant eempe 2 constant eemwe
+  1 constant eepe  1 constant eewe
+  0 constant eere
+$40 constant eedr
+$41 constant eearl
+$42 constant eearh
+$43 constant gtccr
+  7 constant tsm
+  1 constant psrasy
+  0 constant psrsync
+$44 constant tccr0a
+  7 constant com0a1
+  6 constant com0a0
+  5 constant com0b1
+  4 constant com0b0
+  1 constant wgm01
+  0 constant wgm00
+$45 constant tccr0b
+  7 constant foc0a
+  6 constant foc0b
+  3 constant wgm02
+  2 constant cs02
+  1 constant cs01
+  0 constant cs00
+$46 constant tcnt0
+$47 constant ocr0a
+$48 constant ocr0b
+$49 constant pllcsr
+  4 constant pllp2
+  3 constant pllp1
+  2 constant pllp0
+  1 constant plle
+  0 constant plock
+$4a constant gpior1
+$4b constant gpior2
+$4c constant spcr
+  7 constant spie
+  6 constant spe
+  5 constant dord
+  4 constant mstr
+  3 constant cpol
+  2 constant cpha
+  1 constant spr1
+  0 constant spr0
+$4d constant spsr
+  7 constant spif
+  6 constant wcol
+  0 constant spi2x
+$4e constant spdr
+$50 constant acsr
+  7 constant acd
+  6 constant acbg
+  5 constant aco
+  4 constant aci
+  3 constant acie
+  2 constant acic
+  1 constant acis1
+  0 constant acis0
+$51 constant ocdr
+$51 constant mondr
+$53 constant smcr
+  3 constant sm2
+  2 constant sm1
+  1 constant sm0
+  0 constant se
+$54 constant mcusr
+  4 constant jtrf
+  3 constant wdrf
+  2 constant borf
+  1 constant extrf
+  0 constant porf
+$55 constant mcucr
+  7 constant jtd
+  4 constant pud
+  1 constant ivsel
+  0 constant ivce
+$57 constant spmcsr
+  7 constant spmie
+  6 constant rwwsb
+  5 constant sigrd
+  4 constant rwwsre
+  3 constant blbset
+  2 constant pgwrt
+  1 constant pgers
+  0 constant spmen
+$5b constant rampz
+$5d constant spl
+$5e constant sph
+$5f constant sreg
+$60 constant wdtcsr
+  7 constant wdif
+  6 constant wdie
+  5 constant wdp3
+  4 constant wdce
+  3 constant wde
+  2 constant wdp2
+  1 constant wdp1
+  0 constant wdp0
+$61 constant clkpr
+  7 constant clkpce
+  3 constant clkps3
+  2 constant clkps2
+  1 constant clkps1
+  0 constant clkps0
+$64 constant prr0
+  7 constant prtwi
+  6 constant prtim2
+  5 constant prtim0
+  3 constant prtim1
+  2 constant prspi
+  0 constant pradc
+$65 constant prr1
+  7 constant prusb
+  3 constant prtim3
+  0 constant prusart1
+$66 constant osccal
+$68 constant pcicr
+  0 constant pcie0
+$69 constant eicra
+  7 constant isc31
+  6 constant isc30
+  5 constant isc21
+  4 constant isc20
+  3 constant isc11
+  2 constant isc10
+  1 constant isc01
+  0 constant isc00
+$6a constant eicrb
+  7 constant isc71
+  6 constant isc70
+  5 constant isc61
+  4 constant isc60
+  3 constant isc51
+  2 constant isc50
+  1 constant isc41
+  0 constant isc40
+$6b constant pcmsk0
+$6e constant timsk0
+  2 constant ocie0b timsk0 ocie0b 2constant ocie0b-bit
+  1 constant ocie0a timsk0 ocie0a 2constant ocie0a-bit
+  0 constant toie0  timsk0 toie0  2constant toie0-bit
+$6f constant timsk1
+  5 constant icie1  timsk1 icie1  2constant icie1-bit
+  3 constant ocie1c timsk1 ocie1c 2constant ocie1c-bit
+  2 constant ocie1b timsk1 ocie1b 2constant ocie1b-bit
+  1 constant ocie1a timsk1 ocie1a 2constant ocie1a-bit
+  0 constant toie1  timsk1 toie1  2constant toie1-bit
+$70 constant timsk2
+  2 constant ocie2b timsk2 ocie2b 2constant ocie2b-bit
+  1 constant ocie2a timsk2 ocie2a 2constant ocie2a-bit
+  0 constant toie2  timsk2 toie2  2constant toie2-bit
+$71 constant timsk3
+  5 constant icie3  timsk3 icie3  2constant icie3-bit
+  3 constant ocie3c timsk3 ocie3c 2constant ocie3c-bit
+  2 constant ocie3b timsk3 ocie3b 2constant ocie3b-bit
+  1 constant ocie3a timsk3 ocie3a 2constant ocie3a-bit
+  0 constant toie3  timsk3 toie3  2constant toie3-bit
+$74 constant xmcra
+  7 constant sre
+  6 constant srl2
+  5 constant srl1
+  4 constant srl0
+  3 constant srw11
+  2 constant srw10
+  1 constant srw01
+  0 constant srw00
+$75 constant xmcrb
+  7 constant xmbk
+  2 constant xmm2
+  1 constant xmm1
+  0 constant xmm0
+$78 constant adcl
+$79 constant adch
+$7a constant adcsra
+  7 constant aden
+  6 constant adsc
+  5 constant adate
+  4 constant adif
+  3 constant adie
+  2 constant adps2
+  1 constant adps1
+  0 constant adps0
+$7b constant adcsrb
+  7 constant adhsm
+  6 constant acme
+  2 constant adts2
+  1 constant adts1
+  0 constant adts0
+$7c constant admux
+  7 constant refs1
+  6 constant refs0
+  5 constant adlar
+  4 constant mux4
+  3 constant mux3
+  2 constant mux2
+  1 constant mux1
+  0 constant mux0
+$7e constant didr0
+$7f constant didr1
+$80 constant tccr1a
+  7 constant com1a1
+  6 constant com1a0
+  5 constant com1b1
+  4 constant com1b0
+  3 constant com1c1
+  2 constant com1c0
+  1 constant wgm11
+  0 constant wgm10
+$81 constant tccr1b
+  7 constant icnc1
+  6 constant ices1
+  4 constant wgm13
+  3 constant wgm12
+  2 constant cs12
+  1 constant cs11
+  0 constant cs10
+$82 constant tccr1c
+  7 constant foc1a
+  6 constant foc1b
+  5 constant foc1c
+$84 constant tcnt1l
+$85 constant tcnt1h
+$86 constant icr1l
+$87 constant icr1h
+$88 constant ocr1al
+$89 constant ocr1ah
+$8a constant ocr1bl
+$8b constant ocr1bh
+$8c constant ocr1cl
+$8d constant ocr1ch
+$90 constant tccr3a
+  7 constant com3a1
+  6 constant com3a0
+  5 constant com3b1
+  4 constant com3b0
+  3 constant com3c1
+  2 constant com3c0
+  1 constant wgm31
+  0 constant wgm30
+$91 constant tccr3b
+  7 constant icnc3
+  6 constant ices3
+  4 constant wgm33
+  3 constant wgm32
+  2 constant cs32
+  1 constant cs31
+  0 constant cs30
+$92 constant tccr3c
+  7 constant foc3a
+  6 constant foc3b
+  5 constant foc3c
+$94 constant tcnt3l
+$95 constant tcnt3h
+$96 constant icr3l
+$97 constant icr3h
+$98 constant ocr3al
+$99 constant ocr3ah
+$9a constant ocr3bl
+$9b constant ocr3bh
+$9c constant ocr3cl
+$9d constant ocr3ch
+$9e constant uhcon
+  2 constant resume
+  1 constant reset
+  0 constant sofen
+$9f constant uhint
+  6 constant hwupi
+  5 constant hsofi
+  4 constant rxrsmi
+  3 constant rsmedi
+  2 constant rsti
+  1 constant ddisci
+  0 constant dconni
+$a0 constant uhien
+  6 constant hwupe
+  5 constant hsofe
+  4 constant rxrsme
+  3 constant rsmede
+  2 constant rste
+  1 constant ddisce
+  0 constant dconne
+$a1 constant uhaddr
+  6 constant hadd6
+  5 constant hadd5
+  4 constant hadd4
+  3 constant hadd3
+  2 constant hadd2
+  1 constant hadd1
+  0 constant hadd0
+$a2 constant uhfnuml
+  7 constant fnum7
+  6 constant fnum6
+  5 constant fnum5
+  4 constant fnum4
+  3 constant fnum3
+  2 constant fnum2
+  1 constant fnum1
+  0 constant fnum0
+$a3 constant uhfnumh
+  2 constant fnum10
+  1 constant fnum9
+  2 constant fnum8
+$a4 constant uhflen
+  7 constant flen7
+  6 constant flen6
+  5 constant flen5
+  4 constant flen4
+  3 constant flen3
+  2 constant flen2
+  1 constant flen1
+  0 constant flen0
+$a5 constant upinrqx
+  7 constant inrq7
+  6 constant inrq6
+  5 constant inrq5
+  4 constant inrq4
+  3 constant inrq3
+  2 constant inrq2
+  1 constant inrq1
+  0 constant inrq0
+$a6 constant upintx
+  7 constant fifocon
+  6 constant nakedi
+  5 constant rwal
+  4 constant perri
+  3 constant txstpi
+  2 constant txouti
+  1 constant rxstalli
+  0 constant rxini
+$a7 constant upnum
+  2 constant pnum2
+  1 constant pnum1
+  0 constant pnum0
+$a8 constant uprst
+  6 constant prst6
+  5 constant prst5
+  4 constant prst4
+  3 constant prst3
+  2 constant prst2
+  1 constant prst1
+  0 constant prst0
+$a9 constant upconx
+  6 constant pfreeze
+  5 constant inmode
+  3 constant rstdt
+  0 constant pen
+$aa constant upcfg0x
+  7 constant ptype1
+  6 constant ptype0
+  5 constant ptoken1
+  4 constant ptoken0
+  3 constant pepnum3
+  2 constant pepnum2
+  1 constant pepnum1
+  0 constant pepnum0
+$ab constant upcfg1x
+  6 constant psize2
+  5 constant psize1
+  4 constant psize0
+  3 constant pbk1
+  2 constant pbk0
+  1 constant alloc
+$ac constant upstax
+  7 constant cfgok
+  6 constant overfi
+  5 constant underfi
+  3 constant dtseq1
+  2 constant dtseq0
+  1 constant nbusybk1
+  0 constant nbusybk0
+$ad constant upcfg2x
+  7 constant intfrq7
+  6 constant intfrq6
+  5 constant intfrq5
+  4 constant intfrq4
+  3 constant intfrq3
+  2 constant intfrq2
+  1 constant intfrq1
+  0 constant intfrq0
+$ae constant upienx
+  7 constant flerre
+  6 constant nakede
+  4 constant perre
+  3 constant txstpe
+  2 constant txoute
+  1 constant rxstalle
+  0 constant rxine
+$af constant updatx
+  7 constant pdat7
+  6 constant pdat6
+  5 constant pdat5
+  4 constant pdat4
+  3 constant pdat3
+  2 constant pdat2
+  1 constant pdat1
+  0 constant pdat0
+$b0 constant tccr2a
+  7 constant com2a1
+  6 constant com2a0
+  5 constant com2b1
+  4 constant com2b0
+  1 constant wgm21
+  0 constant wgm20
+$b1 constant tccr2b
+  7 constant foc2a
+  6 constant foc2b
+  3 constant wgm22
+  2 constant cs22
+  1 constant cs21
+  0 constant cs20
+$b2 constant tcnt2
+$b3 constant ocr2a
+$b4 constant ocr2b
+$b6 constant assr
+  6 constant exclk
+  5 constant as2
+  4 constant tcn2ub
+  3 constant ocr2aub
+  2 constant ocr2bub
+  1 constant tcr2aub
+  0 constant tcr2bub
+$b8 constant twbr
+$b9 constant twsr
+$ba constant twar
+$bb constant twdr
+$bc constant twcr
+  7 constant twint
+  6 constant twea
+  5 constant twsta
+  4 constant twsto
+  3 constant twwc
+  2 constant twen
+  0 constant twie
+$bd constant twamr
+  7 constant twam6
+  6 constant twam5
+  5 constant twam4
+  4 constant twam3
+  3 constant twam2
+  2 constant twam1
+  1 constant twam0
+$c8 constant ucsr1a
+  7 constant rxc
+  6 constant txc
+  5 constant udre
+  4 constant fe
+  3 constant dor
+  2 constant pe
+  1 constant u2x
+  0 constant mpcm
+$c9 constant ucsr1b
+  7 constant rxcie
+  6 constant txcie
+  5 constant udrie
+  4 constant rxen
+  3 constant txen
+  2 constant ucsz2
+  1 constant rxb8
+  0 constant txb8
+$ca constant ucsr1c
+  7 constant umsel1
+  6 constant umsel0
+  5 constant upm1
+  4 constant upm0
+  3 constant usbs
+  2 constant ucsz1
+  1 constant ucsz0
+  0 constant ucpol
+$cc constant ubrr1l
+$cd constant ubrr1h
+$ce constant udr1
+$d7 constant uhwcon
+  7 constant uimod
+  6 constant uide
+  4 constant uvcone
+  0 constant uvrege
+$d8 constant usbcon
+  7 constant usbe
+  6 constant host
+  5 constant frzclk
+  4 constant otgpade
+  1 constant idte
+  0 constant vbuste
+$d9 constant usbsta
+  3 constant speed
+  1 constant id
+  0 constant vbus
+$da constant usbint
+  1 constant idti
+  0 constant vbusti
+$dd constant otgcon
+  5 constant hnpreq
+  4 constant srpreq
+  3 constant srpsel
+  2 constant vbushwc
+  1 constant vbusreq
+  0 constant vbusrqc
+$de constant otgien
+  5 constant stoe
+  4 constant hnperre
+  3 constant roleexe
+  2 constant bcerre
+  1 constant vberre
+  0 constant srpe
+$df constant otgint
+  5 constant stoi
+  4 constant hnperri
+  3 constant roleexi
+  2 constant bcerri
+  1 constant vberri
+  0 constant srpi
+$e0 constant udcon
+  2 constant lsm
+  1 constant rmwkup
+  0 constant detach
+$e1 constant udint
+  6 constant uprsmi
+  5 constant eorsmi
+  4 constant wakeupi
+  3 constant eorsti
+  2 constant sofi
+  0 constant suspi
+$e2 constant udien
+  6 constant uprsme
+  5 constant eorsme
+  4 constant wakeupe
+  3 constant eorste
+  2 constant sofe
+  0 constant suspe
+$e3 constant udaddr
+  7 constant adden
+  6 constant uadd6
+  5 constant uadd5
+  4 constant uadd4
+  3 constant uadd3
+  2 constant uadd2
+  1 constant uadd1
+  0 constant uadd0
+$e4 constant udfnuml
+  7 constant fnum7
+  6 constant fnum6
+  5 constant fnum5
+  4 constant fnum4
+  3 constant fnum3
+  2 constant fnum2
+  1 constant fnum1
+  0 constant fnum0
+$e5 constant udfnumh
+  2 constant fnum10
+  1 constant fnum9
+  0 constant fnum8
+$e6 constant udmfn
+  4 constant fncerr
+$e8 constant ueintx
+  7 constant fifocon
+  6 constant nakini
+  5 constant rwal
+  4 constant nakouti
+  3 constant rxstpi
+  2 constant rxouti
+  1 constant stalledi
+  0 constant txini
+$e9 constant uenum
+  2 constant epnum2
+  1 constant epnum1
+  0 constant epnum0
+$ea constant uerst
+  6 constant eprst6
+  5 constant eprst5
+  4 constant eprst4
+  3 constant eprst3
+  2 constant eprst2
+  1 constant eprst1
+  0 constant eprst0
+$eb constant ueconx
+  5 constant stallrq
+  4 constant stallrqc
+  3 constant rstdt
+  0 constant epen
+$ec constant uecfg0x
+  7 constant eptype1
+  6 constant eptype0
+  0 constant epdir
+$ed constant uecfg1x
+  6 constant epsize2
+  5 constant epsize1
+  4 constant epsize0
+  3 constant epbk1
+  2 constant epbk0
+  1 constant alloc
+$ee constant uesta0x
+  7 constant cfgok
+  6 constant overfi
+  5 constant underfi
+  3 constant dtseq1
+  2 constant dtseq0
+  1 constant nbusybk1
+  0 constant nbusybk0
+$ef constant uesta1x
+  2 constant ctrldir
+  1 constant currbk1
+  0 constant currbk0
+$f0 constant ueienx
+  7 constant flerre
+  6 constant nakine
+  4 constant nakoute
+  3 constant rxstpe
+  2 constant rxoute
+  1 constant stallede
+  0 constant txine
+$f1 constant uedatx
+  7 constant dat7
+  6 constant dat6
+  5 constant dat5
+  4 constant dat4
+  3 constant dat3
+  2 constant dat2
+  1 constant dat1
+  0 constant dat0
+$f2 constant uebclx
+  7 constant byct7
+  6 constant byct6
+  5 constant byct5
+  4 constant byct4
+  3 constant byct3
+  2 constant byct2
+  1 constant byct1
+  0 constant byct0
+$f3 constant uebchx
+  2 constant byct10
+  1 constant byct9
+  0 constant byct8
+$f4 constant ueint
+  6 constant epint6
+  5 constant epint5
+  4 constant epint4
+  3 constant epint3
+  2 constant epint2
+  1 constant epint1
+  0 constant epint0
+$f5 constant uperrx
+  6 constant counter1
+  5 constant counter0
+  4 constant crc16
+  3 constant timeout
+  2 constant pid
+  1 constant datapid
+  0 constant datatgl
+$f6 constant upbclx
+  7 constant pbyct7
+  6 constant pbyct6
+  5 constant pbyct5
+  4 constant pbyct4
+  3 constant pbyct3
+  2 constant pbyct2
+  1 constant pbyct1
+  0 constant pbyct0
+$f7 constant upbchx
+  2 constant pbyct10
+  1 constant pbyct9
+  0 constant pbyct8
+$f8 constant upint
+  7 constant pint7
+  6 constant pint6
+  5 constant pint5
+  4 constant pint4
+  3 constant pint3
+  2 constant pint2
+  1 constant pint1
+  0 constant pint0
+$f9 constant otgtcon
+  6 constant page1
+  5 constant page0
+  1 constant value1
+  0 constant value0
+
+( spi pins )
+ddrb 0 2constant ss-ddr
+ddrb 1 2constant sck-ddr
+ddrb 2 2constant mosi-ddr
+ddrb 3 2constant miso-ddr
+
+( interrupt vectors )
+$00 constant reset
+$02 constant external_interrupt_0
+$04 constant external_interrupt_1
+$06 constant external_interrupt_2
+$08 constant external_interrupt_3
+$0a constant external_interrupt_4
+$0c constant external_interrupt_5
+$0e constant external_interrupt_6
+$10 constant external_interrupt_7
+$12 constant pin_change_interrupt_0
+$14 constant usb_general
+$16 constant usb_endpoint
+$18 constant wdt
+$1a constant timer2_compare_a
+$1c constant timer2_compare_b
+$1e constant timer2_overflow
+$20 constant timer1_capture
+$22 constant timer1_compare_a
+$24 constant timer1_compare_b
+$26 constant timer1_compare_c
+$28 constant timer1_overflow
+$2a constant timer0_compare_a
+$2c constant timer0_compare_b
+$2e constant timer0_overflow
+$30 constant spi_stc
+$32 constant usart1_rxc
+$34 constant usart1_udre
+$36 constant usart1_txc
+$38 constant analog_comparator
+$3a constant adc
+$3c constant eeprom_ready
+$3e constant timer3_capture
+$40 constant timer3_compare_a
+$42 constant timer3_compare_b
+$44 constant timer3_compare_c
+$46 constant timer3_overflow
+$48 constant twi
+$4a constant spm_ready
+
+$4c constant start
+

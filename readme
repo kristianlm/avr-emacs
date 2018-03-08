@@ -1,0 +1,16 @@
+avrforth
+========
+
+a forth kernel for the atmel avr series
+of microcontrollers which incorporates
+some colorforth features.
+
+check out the following url for more info:
+
+http://krue.net/avrforth/
+
+avrforth is public domain.
+
+
+-- krüe
+
