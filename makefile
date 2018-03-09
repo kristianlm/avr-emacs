@@ -36,7 +36,9 @@ reset:
 	$(AVRDUDE)
 
 serial:
-	picocom -l -b 38400 $(TERMPORT)
+# delbs : so that backspace works in my terminal
+# lfcr : so that newline works inside emacs (C-u M-x run-forth <RET> make serial)
+	picocom -l --omap delbs,lfcr -b 38400 $(TERMPORT)
 
 highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
            blocks/flag.f blocks/lerp.f blocks/debug.f
