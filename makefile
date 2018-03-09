@@ -26,9 +26,6 @@ verify: flash eeprom
 download:
 	$(AVRDUDE) -U flash:r:/tmp/flash:r -U eeprom:r:/tmp/eeprom:r
 
-stty:
-	sudo stty -F $(TERMPORT) 38400 raw -icanon min 1 time 0 -echo -echoe -echok -icrnl
-
 terminal:
 	$(AVRDUDE) -t -u
 
