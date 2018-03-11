@@ -11,6 +11,26 @@ http://krue.net/avrforth/
 
 avrforth is public domain.
 
+troubleshooting
+===============
+
+### send.f hangs
+
+make sure your serial is set up ok:
+
+    for i in {{ 0 100 }} ; do echo test $i ; done > testlines
+    ./send.f /dev/ttyUSB0 testlines
+
+### flashing ok, but any colon-definition freezes the controller
+
+maybe the fuse bits are wrong. you need to set them so there's a big
+bootloader. see make fuse.
+
+### serial port drops characters randomly
+
+are you sure only one program is using it? try
+
+    sudo lsof | grep /dev/ttyACM0 # or your equivalent
 
 -- krüe
 
