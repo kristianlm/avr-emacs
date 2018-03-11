@@ -41,6 +41,12 @@ highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
            blocks/flag.f blocks/lerp.f blocks/debug.f
 	for block_ in $^; do $(SEND) $$block_ ; done
 
+
+# writing fuses can be dangerous, it can bring your chip.
+___fuse:
+	$(AVRDUDE) -U hfuse:w:0xD9:m -U lfuse:w:0xFF:m
+        # we usually don't need to change efuse
+
 clean:
 	rm -f flash eeprom
   
