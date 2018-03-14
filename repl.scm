@@ -10,9 +10,12 @@
 (define (flush-input block?)
   (let loop ()
     (if (or block? (char-ready? ttyin))
-        (let ((byte (car (file-read tty 1))))
+
+        (let* ((got (file-read tty 1))
+               (read (cadr got)) ;; number of bytes
+               (byte (car got))
+               (_ (if (= 0 read) (exit))))
           (cond ((eof-object? byte))
-                ((equal? "" byte) (exit))
                 ((equal? "\n" byte) (loop))
                 ((equal? "\r" byte) (display "\n")) ;; exits loop
                 (else (display byte) (loop))))
