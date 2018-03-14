@@ -37,6 +37,12 @@ serial:
 # lfcr : so that newline works inside emacs (C-u M-x run-forth <RET> make serial)
 	picocom -l --omap delbs,lfcr -b 38400 $(TERMPORT)
 
+repl:
+# delbs : so that backspace works in my terminal
+# lfcr : so that newline works inside emacs (C-u M-x run-forth <RET> make serial)
+	stty -F /dev/ttyACM0 38400 raw -echo
+	csi -s repl.scm
+
 highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
            blocks/flag.f blocks/lerp.f blocks/debug.f
 	for block_ in $^; do $(SEND) $$block_ ; done
