@@ -17,7 +17,7 @@ hex
 
 ( usart buffer sizes - must be a power of two )
 010 constant usart0_tx_size
-010 constant usart0_rx_size
+100 constant usart0_rx_size
   
 ( interrupt stack sizes )
 true constant int_stack
