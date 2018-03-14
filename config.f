@@ -5,7 +5,7 @@
 decimal
 
 ( cpu clock in hertz )
-16000000 constant cpu_frequency
+8000000 constant cpu_frequency
 
 ( usart to use for terminal )
 00 constant usart

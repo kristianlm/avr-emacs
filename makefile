@@ -50,7 +50,7 @@ highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
 
 # writing fuses can be dangerous, it can bring your chip.
 ___fuse:
-	$(AVRDUDE) -U hfuse:w:0xD9:m -U lfuse:w:0xFF:m
+	$(AVRDUDE) -U hfuse:w:0xD9:m -U lfuse:w:0xF2:m
         # we usually don't need to change efuse
 
 clean:
