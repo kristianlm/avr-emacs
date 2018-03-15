@@ -57,7 +57,7 @@ fuse:
 
 clean:
 	rm -f flash eeprom
-  
+
 dist:
 	git archive --format=tar --prefix=avrforth-$(VERSION)/ \
 	$(VERSION) | gzip > /tmp/avrforth-$(VERSION).tar.gz
