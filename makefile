@@ -44,7 +44,7 @@ repl:
 	csi -s repl.scm
 
 highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
-           blocks/flag.f blocks/lerp.f blocks/debug.f
+           blocks/flag.f blocks/lerp.f blocks/debug.f blocks/pin.f
 	for block_ in $^; do $(SEND) $$block_ ; done
 
 
