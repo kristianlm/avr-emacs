@@ -17,8 +17,8 @@
                (_ (if (= 0 read) (exit))))
           (cond ((eof-object? byte))
                 ((equal? "\n" byte) (loop))
-                ((equal? "\r" byte) (display "\n")) ;; exits loop
-                (else (display byte) (loop))))
+                ((equal? "\r" byte) (display "\n") (flush-output)) ;; exits loop
+                (else (display byte) (flush-output) (loop))))
         (begin (debug "strange, no data here")))))
 
 (debug "tty: " tty)
