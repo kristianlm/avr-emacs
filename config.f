@@ -11,13 +11,13 @@ decimal
 00 constant usart
 
 ( baud rate of terminal )
-38400 constant baud_rate
+9600 constant baud_rate
 
 hex
 
 ( usart buffer sizes - must be a power of two )
 010 constant usart0_tx_size
-100 constant usart0_rx_size
+010 constant usart0_rx_size
   
 ( interrupt stack sizes )
 true constant int_stack
