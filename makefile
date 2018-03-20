@@ -3,7 +3,7 @@ BAUD=9600
 DEVICE=atmega328p
 PROGRAMMER=avrispmkII
 PROGPORT=usb
-TERMPORT=/dev/ttyACM0
+TERMPORT=/dev/ttyUSB0
 
 # hopefully, you don't have to touch anything down here
 VERSION=2010.06.13
