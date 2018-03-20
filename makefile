@@ -1,4 +1,5 @@
 # user modifiable secion is up here
+BAUD=9600
 DEVICE=atmega328p
 PROGRAMMER=avrispmkII
 PROGPORT=usb
@@ -35,13 +36,13 @@ reset:
 serial:
 # delbs : so that backspace works in my terminal
 # lfcr : so that newline works inside emacs (C-u M-x run-forth <RET> make serial)
-	picocom -l --omap delbs,lfcr -b 38400 $(TERMPORT)
+	picocom -l --omap delbs,lfcr -b $(BAUD) $(TERMPORT)
 
 repl:
 # delbs : so that backspace works in my terminal
 # lfcr : so that newline works inside emacs (C-u M-x run-forth <RET> make serial)
-	stty -F /dev/ttyACM0 38400 raw -echo
-	csi -s repl.scm
+	stty -F $(TERMPORT) $(BAUD) raw -echo
+	csi -s repl.scm $(TERMPORT)
 
 highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
            blocks/flag.f blocks/lerp.f blocks/debug.f blocks/pin.f
