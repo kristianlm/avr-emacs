@@ -1,7 +1,7 @@
 (use posix srfi-18 srfi-13)
 
 (define debug (begin print void))
-(define tty (file-open "/dev/ttyACM0" open/rdwr))
+(define tty (file-open (car (command-line-arguments)) open/rdwr))
 ;;(##sys#file-nonblocking! tty)
 
 (define ttyin (open-input-file* tty))
