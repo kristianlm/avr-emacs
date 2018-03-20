@@ -16,7 +16,7 @@ ihere $ 60 2* iallot : fontstart l ] ;
     ] high ] >oled
     ] low  ] >oled ] dup
     ] high ] >oled
-    ] low  ] >oled ] 0 ] >oled ] ;
+    ] low  ] >oled ] ;
 : c>gi [ $ 20 l ] - [ $ 7f l ] and ] ;
 
 : oled.emit ] c>gi ] glyph@ ] glyph>oled ] ;
