@@ -21,11 +21,14 @@ test: avrforth.f config.f asm/* drivers/*
 upload: flash eeprom
 	$(AVRDUDE) -e -U flash:w:flash:r -U eeprom:w:eeprom:r
 
+upload-highlevel:
+	$(AVRDUDE) -e -U flash:w:flash.backup:r -U eeprom:w:eeprom.backup:r
+
 verify: flash eeprom
 	$(AVRDUDE) -U flash:v:flash:r -U eeprom:v:flash:r
 
 download:
-	$(AVRDUDE) -U flash:r:/tmp/flash:r -U eeprom:r:/tmp/eeprom:r
+	$(AVRDUDE) -U flash:r:flash.backup:r -U eeprom:r:eeprom.backup:r
 
 terminal:
 	$(AVRDUDE) -t -u
