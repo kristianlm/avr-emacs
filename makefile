@@ -8,7 +8,7 @@ TERMPORT=/dev/ttyACM0
 # hopefully, you don't have to touch anything down here
 VERSION=2010.06.13
 
-SEND=sudo ./send.f $(TERMPORT)
+SEND=gforth ./send.f $(TERMPORT)
 AVRDUDE=sudo avrdude -c $(PROGRAMMER) -p $(DEVICE) -P $(PROGPORT)
 GFORTH=gforth
 
