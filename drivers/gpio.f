@@ -28,3 +28,28 @@
 [ifdef] ddrg  s" ddrg"  link, ddrg  const, [then]
 [ifdef] portg s" portg" link, portg const, [then]
 
+[ifdef] external_interrupt_0
+    s" 'ei0" link, there constant &'ei0 02 var,
+    &'ei0 external_interrupt_0 ramvector
+[then]
+
+[ifdef] external_interrupt_1
+    s" 'ei1" link, there constant &'ei1 02 var,
+    &'ei1 external_interrupt_1 ramvector
+[then]
+
+[ifdef] pin_change_interrupt_0
+    s" 'pci0" link, there constant &'pci0 02 var,
+    &'pci0 pin_change_interrupt_0 ramvector
+[then]
+
+[ifdef] pin_change_interrupt_1
+    s" 'pci1" link, there constant &'pci1 02 var,
+    &'pci1 pin_change_interrupt_1 ramvector
+[then]
+
+[ifdef] pin_change_interrupt_2
+    s" 'pci2" link, there constant &'pci2 02 var,
+    &'pci2 pin_change_interrupt_2 ramvector
+[then]
+
