@@ -2,8 +2,10 @@
 
 : ll ] swap ] l ] l ] ;
 
+: get ( a b -- x) ] 2^ ] swap ] c@ ] and ] ones ] ;
 : set ( a b -- ) ] 2^ ] over ] c@ ] or ] swap ] c! ] ;
 : clear ( a b -- ) ] 2^ ] invert ] over ] c@ ] and ] swap ] c! ] ;
+: toggle ( a b --) ] 2dup ] get ] 0? ] if ] drop ] clear ] ; ] then ] drop ] set ] ;
 
 macro : set
   ] ?lit ] if
