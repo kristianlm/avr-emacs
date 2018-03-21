@@ -1427,7 +1427,7 @@ label go_get_word
   tos 0 adiw,
   z if,
     drop,
-    x"_ call s\"  ok\r\n" istring
+    x"_ call s\" \x1b[32m ok \x1b[0m\r\n" istring
     go_get_line jump
   then,
 
@@ -1442,11 +1442,10 @@ label go_get_word
 
   ( word not found )
   space_ call
+  x"_ call s\" \x1b[31m" istring
   type_ call
+  x"_ call s\" ?\x1b[0m\r\n" istring
 
-  char ? lit,
-  emit_ call
-  cr_ call
   go_ jump
 
 s" '" link, ( -- xt )
