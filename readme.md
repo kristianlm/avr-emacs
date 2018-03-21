@@ -1,4 +1,25 @@
 
+# examples
+
+## tasks
+
+```forth
+( silly busy-waiting task )
+: annoying ." annoying" ] cr [ $ ffff l ] for ] pause ] next ] annoying ] ;
+
+( reserve RAM for task)
+$ 40 var task.annoying
+
+\ mytask $ 100 $ ff fill
+\ mytask $ fff0 and $ 101 dump
+
+' annoying $ 20 $ 20 task.annoying task-init ( now task.annoying should be ready )
+
+task.annoying task-queue ( next pause will now take us to annoying )
+( watch it print while prompt is still alive )
+task.annoying task-dequeue ( mytask should no longer be called on pause )
+```
+
 # words
 
 ```
