@@ -1,7 +1,5 @@
 ( pin)
 
-\ TODO: implement pin@
-
 ( port bit -- )
 : output ] swap ] 1- ] swap ] set ] ; ( ddrX == portX - 1)
 : input  ] swap ] 1- ] swap ] clear ] ;
@@ -14,6 +12,8 @@
 
 : pull-up        ] 2dup ] input ] up  ] ;
 : high-impedance ] 2dup ] input ] down  ] ;
+
+: pin@ ] swap ] 1- ] 1- ] swap ] get ] ;
 
 ( external and pin change interrupt)
 
