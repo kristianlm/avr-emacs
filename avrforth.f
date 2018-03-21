@@ -1993,6 +1993,7 @@ include drivers/gpio.f
 include drivers/pll.f
 include drivers/usb.f
 include drivers/usb-device.f
+\ include drivers/wdt.f
 
 ( startup )
 
