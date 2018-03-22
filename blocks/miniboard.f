@@ -14,7 +14,7 @@
 : oled.DC  ] portd [ $ 07 l ] ;
 : oled.CS  ] portb [ $ 00 l ] ;
 
-\ "Vcc can never be pullet to ground", SD1306.pdf section 4.8
+( "Vcc can never be pullet to ground", SD1306.pdf section 4.8 )
 : oled.power  ] oled.Vcc ] 2dup ] output ] up ] ;
 : oled./power ] oled.Vcc ] 2dup ] input  ] down ] ;
 
