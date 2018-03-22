@@ -34,6 +34,7 @@
           ((= readyfd 0)
            (debug "> handing stdin")
            (let ((line (read-line)))
+             (when (eof-object? line) (exit 0))
              (unless (string-prefix? "\\ " line)
                (file-write tty line)))
            (file-write tty "\r")
