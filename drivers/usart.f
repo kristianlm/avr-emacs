@@ -22,6 +22,8 @@ label usart0_
   usart0_tx_out zero store
   usart0_rx_in zero store
   usart0_rx_out zero store
+  temp0 usbs 2^ ucsz0 2^ or ucsz1 2^ or ldi, ( 2 stop bits, 8cs)
+  ucsr0c temp0 store
   temp0 txen 2^ rxen 2^ or rxcie 2^ or ldi,
   ucsr0b temp0 store
   ret,

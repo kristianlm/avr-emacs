@@ -39,7 +39,7 @@ reset:
 serial:
 # delbs : so that backspace works in my terminal
 # lfcr : so that newline works inside emacs (C-u M-x run-forth <RET> make serial)
-	picocom -l --omap delbs,lfcr -b $(BAUD) $(TERMPORT)
+	picocom -l --stopbits 2 --omap delbs,lfcr -b $(BAUD) $(TERMPORT)
 
 repl:
 # delbs : so that backspace works in my terminal
