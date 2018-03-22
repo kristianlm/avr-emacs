@@ -7,7 +7,7 @@ oled.DC  2dup  output down ( for now)
 oled.CS  2dup  output down ( drive low)
 
 ( init SPI)
-ddrb $ 3 set ( MOSI output)
+ddrb $ 3 set ( unused, but MOSI must be output for SPI to work)
 ddrb $ 5 set ( SCK output)
 spimaster
 spiclk/2 spiclk
