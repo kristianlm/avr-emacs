@@ -1,10 +1,19 @@
 ( miniboard hardware interface)
 
+( status leds )
 : led.A  ] portc [ $ 04 l ] ;
 : led.A' ] portc [ $ 03 l ] ; ( same as btn.X')
 
-: btn.X  ] portc [ $ 05 l ] ; ( PCINT13)
-: btn.X' ] portc [ $ 03 l ] ;
+( buttons )
+
+: btn.A  ] portb [ $ 04 l ] ; ( MISO must be output for SPI)
+: btn.A' ] portb [ $ 02 l ] ; ( PCINT2 )
+
+: btn.X  ] portc [ $ 02 l ] ; ( PCINT10)
+: btn.X' ] portc [ $ 00 l ] ;
+
+: btn.Y  ] portc [ $ 05 l ] ; ( PCINT13)
+: btn.Y' ] portc [ $ 03 l ] ;
 
 ( oled.GND hardwired to GND)
 : oled.Vcc ] portb [ $ 06 l ] ;

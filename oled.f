@@ -6,6 +6,13 @@ oled.RST 2dup  output up   ( drive high)
 oled.DC  2dup  output down ( for now)
 oled.CS  2dup  output down ( drive low)
 
+btn.A pull-up
+btn.A' ground
+btn.X pull-up
+btn.X' ground
+btn.Y pull-up
+btn.Y' ground
+
 ( init SPI)
 ddrb $ 3 set ( unused, but MOSI must be output for SPI to work)
 ddrb $ 5 set ( SCK output)
