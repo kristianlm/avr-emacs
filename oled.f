@@ -48,17 +48,25 @@ $ 4 oled.page
 \ k inc k c@ >oled
 \ $ 00 >oled
 
-int: int.blink ] led.A ] toggle ] int;
+2 var counter
+0 counter !
+: counter++ ] counter ] @ ] 1+ ] counter ] ! ] ;
+
+int: int.blink ] led.A ] toggle ] counter++ ] int;
 ' int.blink 't0ovf !
 t0ovfint set
+clk-none t0clk
+clk/8 t0clk
 clk/1024 t0clk
 
+led.A pull-up
 led.A toggle
 led.A' ground
 
+\ : forever ] led.A ] drop ] c@ ] >oled ] forever ] ; 
+\ : forever ] counter ] @ ] >oled ] forever ] ; 
 
-
-$ 00 oled.x
+$ 10 oled.x
 $ 00 >oled $ 00 >oled
 $ 00 >oled $ 00 >oled
 $ 00 >oled $ 00 >oled
