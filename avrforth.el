@@ -10,13 +10,18 @@
 (defvar avrforth-mode-syntax-table nil "Syntax table for `avrforth-mode'.")
 
 (setq avrforth-mode-syntax-table
-      (let ( (st (make-syntax-table)))
-        (modify-syntax-entry ?\\ "<" st)
-        (modify-syntax-entry ?\n ">" st)
+      (let ( (st (make-syntax-table text-mode-syntax-table)))
+        ;;(modify-syntax-entry ?\\ "<" st)
+        ;;(modify-syntax-entry ?\n ">" st)
         (modify-syntax-entry ?.  "_" st)
         (modify-syntax-entry ?,  "_" st)
         (modify-syntax-entry ?:  "_" st)
         (modify-syntax-entry ?\; "_" st)
+        (modify-syntax-entry ?!  "_" st)
+        (modify-syntax-entry ?@  "_" st)
+        (modify-syntax-entry ?#  "_" st)
+        (modify-syntax-entry ??  "_" st)
+        (modify-syntax-entry ?~  "_" st)
         (modify-syntax-entry ?\( "_" st)
         (modify-syntax-entry ?\) "_" st)
         (modify-syntax-entry ?\[ "_" st)
@@ -26,21 +31,26 @@
         st))
 
 (setq avrforth-highlights
-      '(
+      '(        ;; comment
+        ("\\_<\([[:space:]]+[^)]+\)" . font-lock-comment-face)
         ;; ] prefix
-        ("\\<\][[:space:]]+[^[:space:]]+" . 'avrforth-face-compiled-word)
-        ;; comment
-        ("\\<\([[:space:]]+[^)]+\)" . font-lock-comment-face)
+        ("\\_<\][[:space:]]+[^[:space:]]+\\_>" . 'avrforth-face-compiled-word)
+
         ;; colon definition
-        ("\\([^[:space:]]*:[[:space:]]+[^[:space:]]+\\)" . (1 font-lock-function-name-face))
+        ;;("\\_<[^[:space:]]*:[[:space:]]+[^[:space:]]+\\>_" . font-lock-function-name-face)
+        ("\\_<:[[:space:]]+[^[:space:]]+\\_>" . font-lock-function-name-face)
         ;; l
-        ("\\<l\\>" . font-lock-keyword-face)
+        ("\\_<l\\_>" . font-lock-keyword-face)
         ;; [
-        ("\\<\\[\\>" . font-lock-keyword-face)
+        ("\\_<\\[\\_>" . font-lock-keyword-face)
         ;; only 16-bit lowercase hexadecimal!
-        ("\\<$[[:space:]]+[0-9a-f]\\{1,4\\}\\>" . font-lock-constant-face)
+        ("\\_<$[[:space:]]+[0-9a-f]\\{1,4\\}\\_>" . font-lock-constant-face)
         ;; any other literals are no good:
-        ("\\<$[[:space:]]+[^[:space:]]+" . font-lock-warning-face)))
+        ("\\_<$[[:space:]]+[^[:space:]]+" . font-lock-warning-face)
+
+        t))
+
+;;(require 'forth-mode)
 
 ;; get your forth-mode from gforth.el, distributed in the official
 ;; gforth releases.
@@ -50,12 +60,14 @@
 gforth's syntax highlighting makes it really to read. this mode
 will turn your ]-prefixed words into a different font, and it
 will color [ and l pairs (not [ and ]) so they match."
+
   (setq font-lock-defaults '(avrforth-highlights))
 
   (set-syntax-table avrforth-mode-syntax-table)
-  (setq font-lock-multiline nil)
+  (setq font-lock-multiline t)
   (setq-local comment-start "\\ ")
   (setq-local comment-end ""))
 
 
-(setq auto-mode-alist (cons '("\\.avrforth\\'" . avrforth-mode) auto-mode-alist))
+;;(setq auto-mode-alist (cons '("\\.avrforth\\'" . avrforth-mode) auto-mode-alist))
+
