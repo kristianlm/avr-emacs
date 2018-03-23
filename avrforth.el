@@ -38,7 +38,9 @@
 
         ;; colon definition
         ;;("\\_<[^[:space:]]*:[[:space:]]+[^[:space:]]+\\>_" . font-lock-function-name-face)
-        ("\\_<:[[:space:]]+[^[:space:]]+\\_>" . font-lock-function-name-face)
+        ("\\_<[^[:space:]]*:[[:space:]]+[^[:space:]]+\\_>" . font-lock-function-name-face)
+
+        ("\\_<[^[:space:]]*\"[[:space:]]\\([^\"]*\\)\"" 1 font-lock-string-face )
         ;; l
         ("\\_<l\\_>" . font-lock-keyword-face)
         ;; [
