@@ -31,8 +31,10 @@
         st))
 
 (setq avrforth-highlights
-      '(        ;; comment
-        ("\\_<\([[:space:]]+[^)]+\)" . font-lock-comment-face)
+      '( ;; comment
+        ("\\_<\([[:space:]][^)]\\{1,63\\}\)" . font-lock-comment-face)
+        ;; we have a 64 byte buffer, longer comments cause crashes:
+        ("\\_<\([[:space:]][^)]+\)" . font-lock-warning-face)
         ;; ] prefix
         ("\\_<\][[:space:]]+[^[:space:]]+\\_>" . 'avrforth-face-compiled-word)
 
