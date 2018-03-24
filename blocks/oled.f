@@ -80,7 +80,7 @@
     [ $ 8001 l ] >oled16
     ] ;
 
-: splashscreen
+: oled.splash
     [ $ 00 l ] oled.fill
     [ $ 28 l ] oled.x ] logo
     ] slow2 ] slow2 ] slow2 ] slow2
@@ -115,6 +115,5 @@
     ] oled.rightwards
     ] oled./inverse
     ] oled.vflip
-    ] splashscreen
     ] ;
 
