@@ -54,15 +54,16 @@ ihere 2 + ."   etianmsurwdkgohvf_l_pjbxcyzq__" con morsetable
 ( ========== line buffer ========== )
 
 $ 02 var at     0 at !
-$ 41 var &line &line $ 41 0 fill ( 1 extra byte for null-termination )
-( &line $ 40 dump )
+$ 0100 con linesize
+linesize var &line    &line linesize 0 fill
+( &line linesize dump )
 : at! ( c --) ] at ] c@ ] &line ] + ] c! ] ; ( save c into at )
 : at@ ( -- c) ] at ] c@ ] &line ] + ] c@ ] ; ( get c in line from at )
-: at++ ] at ] c@ ] 1+ [ $ 3f l ] and ] at ] c! ] ;
-: at-- ] at ] c@ ] 1- [ $ 3f l ] and ] at ] c! ] ;
+: at++ ] at ] c@ ] 1+   ] linesize ] 1- ] and   ] at ] c! ] ;
+: at-- ] at ] c@ ] 1-   ] linesize ] 1- ] and   ] at ] c! ] ;
 ( store char c into line and move cursor )
 : commit ( c -- ) ] at! ] at++ ] ;
-: lineclear ( -- ) ] &line [ $ 40 l [ $ 20 l ] fill [ $ 0 l ] at ] ! ] ;
+: lineclear ( -- ) ] &line ] linesize [ $ 20 l ] fill [ $ 0 l ] at ] ! ] ;
 
 ( holder for "callback" )
 2 var 'btns.handler ' drop  'btns.handler !
