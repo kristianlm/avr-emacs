@@ -68,16 +68,23 @@ linesize var &line    &line linesize 0 fill
 ( holder for "callback" )
 2 var 'btns.handler ' drop  'btns.handler !
 2 var 'btns.updater ' line. 'btns.updater !
+2 var 'btns.special ' h.    'btns.special !
 
 : update ] 'btns.updater ] @ ] execute ] ;
+: special ] 'btns.special ] @ ] execute ] ;
 
 ( btnsq -- )
 : btns.handler [ $ 0fff l ] and
-    [ $ 0010 l ] ?? ] drop ] =if ." dash " ] morsing ] @ ] dash ] morsing ] ! ] update ] then
-    [ $ 0040 l ] ?? ] drop ] =if ."  dit " ] morsing ] @ ]  dit ] morsing ] ! ] update ] then
-    [ $ 0232 l ] ?? ] drop ] =if ." m>> " ] at++ ] /morsing ] update ] then
-    [ $ 0262 l ] ?? ] drop ] =if ." m<< " ] at-- ] /morsing ] update ] then
-    [ $ 0020 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] commit ] /morsing ] update ] then
+    [ $ 0010 l ] ?? ] drop ] =if ] morsing ] @ ]   dash ] morsing ] !        ] update ] then
+    [ $ 0040 l ] ?? ] drop ] =if ] morsing ] @ ]    dit ] morsing ] !        ] update ] then
+    [ $ 0020 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] commit  ] /morsing ] update ] then
+    [ $ 0454 l ] ?? ] drop ] =if ] at++                           ] /morsing ] update ] then
+    [ $ 0151 l ] ?? ] drop ] =if ] at--                           ] /morsing ] update ] then
+    [ $ 0262 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] special ] /morsing ] update ] then
+    [ $ 0464 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] special ] /morsing ] update ] then
+    [ $ 0462 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] special ] /morsing ] update ] then
+    [ $ 0264 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] special ] /morsing ] update ] then
+    [ $ 0131 l ] ?? ] drop ] =if                                  ] /morsing ] update ] then
     ] drop
   ] ;
 ' btns.handler 'btns.handler !
