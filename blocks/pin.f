@@ -10,8 +10,8 @@
 : ground ] 2dup ] output ] clear ] ;
 : vcc    ] 2dup ] output ] set   ] ;
 
-: pull-up        ] 2dup ] input ] up  ] ;
-: high-impedance ] 2dup ] input ] down  ] ;
+: pull-up  ] 2dup ] input ] up  ] ;
+: floating ] 2dup ] input ] down  ] ;
 
 : pin@ ] swap ] 1- ] 1- ] swap ] get ] ;
 
