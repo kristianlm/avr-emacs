@@ -54,7 +54,7 @@ ihere 2 + ."   etianmsurwdkgohvf_l_pjbxcyzq__" con morsetable
 ( ========== line buffer ========== )
 
 $ 02 var at     0 at !
-$ 0100 con linesize
+$ 0100 con linesize ( must be 2ˣ )
 linesize var &line    &line linesize 0 fill
 ( &line linesize dump )
 : at! ( c --) ] at ] c@ ] &line ] + ] c! ] ; ( save c into at )
@@ -93,12 +93,28 @@ linesize var &line    &line linesize 0 fill
 
 ( print char at@ but in inverted colors )
 : /at@. ] at@ ] c>gi ] glyph@ ] invert ] swap ] invert ] swap ] glyph>oled ] ;
+: row ( i -- row ) [ $ 5 l ] rshift ] ;
+
+: arrow>
+    [ $ 00 l ] >oled
+    [ $ 3c l ] >oled
+    [ $ 18 l ] >oled
+    [ $ 00 l ] >oled
+    ] ;
 
 ( redraw line on display )
+( redraw display )
 : line.
-    ] &line ] oled<row ( draw line )
-    ] at ] @ ] 2* ] 2* ] oled.x ] /at@. ( draw cursor overlay )
-   ] ;
+    [ $ 7 l ] oled.page [ $ 0 l ] oled.x ] arrow> ] morsing ] @ ] morse@ ] oled.emit
+    [ $ 6 l ] oled.page ] &line [ $ 0000 l ] + ] oled<row
+    [ $ 5 l ] oled.page ] &line [ $ 0020 l ] + ] oled<row
+    [ $ 4 l ] oled.page ] &line [ $ 0040 l ] + ] oled<row
+    [ $ 3 l ] oled.page ] &line [ $ 0060 l ] + ] oled<row
+    [ $ 2 l ] oled.page ] &line [ $ 0080 l ] + ] oled<row
+    [ $ 1 l ] oled.page ] &line [ $ 00a0 l ] + ] oled<row
+    [ $ 0 l ] oled.page ] &line [ $ 00c0 l ] + ] oled<row
+    [ $ 7 l ] at ] @ ] row ] - ] 1- ] oled.page ] at ] @ ] 2* ] 2* ] oled.x ] /at@.
+    ] ;
 ' line. 'btns.updater !
 
 ( enqueue new button state if something changed )
