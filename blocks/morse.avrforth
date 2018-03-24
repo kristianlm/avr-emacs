@@ -73,6 +73,10 @@ $ 41 var &line &line $ 41 0 fill ( 1 extra byte for null-termination )
                  [ $ 4 l ] + ] oled.x [ $ 0055 l ] >oled
     ] ;
 
+
+( holder for "callback" )
+2 var 'btns.handler 0 'btns.handler !
+
 ( btnsq -- )
 : btns.handler [ $ 0fff l ] and
     [ $ 0010 l ] ?? ] drop ] =if ." dash " ] morsing ] @ ] dash ] morsing ] ! ] line. ] then
@@ -82,9 +86,7 @@ $ 41 var &line &line $ 41 0 fill ( 1 extra byte for null-termination )
     [ $ 0020 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] commit ] line. ] /morsing ] then
     ] drop
   ] ;
-
-( holder for "callback" )
-2 var 'btns.handler  0    'btns.handler !
+' btns.handler 'btns.handler !
 
 ( enqueue new button state if something changed )
 : btns.maybeq ( -- )
