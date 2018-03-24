@@ -47,9 +47,10 @@ repl:
 	stty -F $(TERMPORT) $(BAUD) raw -echo
 	csi -s repl.scm $(TERMPORT)
 
-highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
-           blocks/flag.f blocks/lerp.f blocks/debug.f \
-           blocks/pin.f blocks/miniboard.f blocks/oled.f blocks/font4x6.f blocks/main.f
+highlevel: blocks/core.avrforth blocks/assembler.avrforth blocks/bit.avrforth blocks/extend.avrforth \
+           blocks/flag.avrforth blocks/lerp.avrforth blocks/debug.avrforth \
+           blocks/pin.avrforth blocks/miniboard.avrforth blocks/oled.avrforth \
+	   blocks/font4x6.avrforth blocks/morse.avrforth blocks/main.avrforth
 	for block_ in $^; do $(SEND) $$block_ ; done
 
 
