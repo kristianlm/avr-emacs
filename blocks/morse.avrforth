@@ -132,11 +132,11 @@ $ 80 var &btns-watch
 
 : morse.init
     ( init buttons )
-    ." initializing morse"
     ] btn.A ] pull-up ] btn.A' ] ground
     ] btn.X ] pull-up ] btn.X' ] ground
     ] btn.Y ] pull-up ] btn.Y' ] ground
     ] lineclear
+    ] /morsing
     [ ' btns.handler l ] 'btns.handler ] !
     [ ' line. l ] 'btns.updater ] !
     [ ' btns-watch l [ $ 20 l [ $ 20 l ] &btns-watch ] task-init
