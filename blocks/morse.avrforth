@@ -61,6 +61,8 @@ linesize var &line    &line linesize 0 fill
 : at@ ( -- c) ] at ] c@ ] &line ] + ] c@ ] ; ( get c in line from at )
 : at++ ] at ] c@ ] 1+   ] linesize ] 1- ] and   ] at ] c! ] ;
 : at-- ] at ] c@ ] 1-   ] linesize ] 1- ] and   ] at ] c! ] ;
+: at!+ ] at ] c@ ] +    ] linesize ] 1- ] and   ] at ] c! ] ;
+
 ( store char c into line and move cursor )
 : commit ( c -- ) ] at! ] at++ ] ;
 : lineclear ( -- ) ] &line ] linesize [ $ 20 l ] fill [ $ 0 l ] at ] ! ] ;
@@ -102,7 +104,27 @@ linesize var &line    &line linesize 0 fill
     [ $ 00 l ] >oled
     ] ;
 
-( redraw line on display )
+: C-a ] at ] @ [ $ e0 l ] and ] at ] ! ] line. ] ;
+: C-e ] C-a    [ $ 1f l ] at!+ ] ;
+: C-n [ $ 20 l          ] at!+ ] ;
+: C-p [ $ 20 l ] negate ] at!+ ] ;
+
+( usage: char a h. => 0061 )
+: char [ $ 20 l ] word ] c@ ] ;
+
+2 var last-mnemonic  char a last-mnemonic !
+
+: mnemonic ." special: " ] dup ] emit ] cr
+    [ $ 0020 l ] ?? ] drop ] =if ] drop ] last-mnemonic ] @ ] mnemonic ] ; ] then
+    [ char a l ] ?? ] drop ] =if ] C-a ] then
+    [ char e l ] ?? ] drop ] =if ] C-e ] then
+    [ char n l ] ?? ] drop ] =if ] C-n ] then
+    [ char p l ] ?? ] drop ] =if ] C-p ] then
+    ] last-mnemonic ] !
+    ] ;
+' mnemonic 'btns.special !
+
+
 ( redraw display )
 : line.
     [ $ 7 l ] oled.page [ $ 0 l ] oled.x ] arrow> ] morsing ] @ ] morse@ ] oled.emit
@@ -139,6 +161,7 @@ $ 80 var &btns-watch
     ] /morsing
     [ ' btns.handler l ] 'btns.handler ] !
     [ ' line. l ] 'btns.updater ] !
+    [ ' mnemonic l ] 'btns.special ] !
     [ ' btns-watch l [ $ 20 l [ $ 20 l ] &btns-watch ] task-init
     ] line.
     ] ;
