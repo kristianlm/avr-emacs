@@ -56,37 +56,41 @@ ihere 2 + ."   etianmsurwdkgohvf_l_pjbxcyzq__" con morsetable
 $ 02 var at     0 at !
 $ 41 var &line &line $ 41 0 fill ( 1 extra byte for null-termination )
 ( &line $ 40 dump )
+: at! ( c --) ] at ] c@ ] &line ] + ] c! ] ; ( save c into at )
+: at@ ( -- c) ] at ] c@ ] &line ] + ] c@ ] ; ( get c in line from at )
 : at++ ] at ] c@ ] 1+ [ $ 3f l ] and ] at ] c! ] ;
 : at-- ] at ] c@ ] 1- [ $ 3f l ] and ] at ] c! ] ;
 ( store char c into line and move cursor )
-: commit ( c -- ) ] at ] c@ ] &line ] + ] c! ] at++ ] ;
+: commit ( c -- ) ] at! ] at++ ] ;
 : lineclear ( -- ) ] &line [ $ 40 l [ $ 20 l ] fill [ $ 0 l ] at ] ! ] ;
 
-( print current line )
-: line.
-    [ $ 3 l ] oled.page
-    ] cr ] at ] @ ] 0? ] if ] for ] space ] next ] then ." v ("
-    ] morsing ] @ ] morse@ ] emit ." )"
-    ] cr ] &line ] type
-    ] &line ] oled<row
-    ] at ] @ ] 2* ] 2* ] dup ] oled.x [ $ 0055 l ] >oled
-                 [ $ 4 l ] + ] oled.x [ $ 0055 l ] >oled
-    ] ;
-
-
 ( holder for "callback" )
-2 var 'btns.handler 0 'btns.handler !
+2 var 'btns.handler ' drop  'btns.handler !
+2 var 'btns.updater ' line. 'btns.updater !
+
+: update ] 'btns.updater ] @ ] execute ] ;
 
 ( btnsq -- )
 : btns.handler [ $ 0fff l ] and
-    [ $ 0010 l ] ?? ] drop ] =if ." dash " ] morsing ] @ ] dash ] morsing ] ! ] line. ] then
-    [ $ 0040 l ] ?? ] drop ] =if ."  dit " ] morsing ] @ ]  dit ] morsing ] ! ] line. ] then
-    [ $ 0232 l ] ?? ] drop ] =if ." m>> " ] at++ ] line. ] then
-    [ $ 0262 l ] ?? ] drop ] =if ." m<< " ] at-- ] line. ] then
-    [ $ 0020 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] commit ] line. ] /morsing ] then
+    [ $ 0010 l ] ?? ] drop ] =if ." dash " ] morsing ] @ ] dash ] morsing ] ! ] update ] then
+    [ $ 0040 l ] ?? ] drop ] =if ."  dit " ] morsing ] @ ]  dit ] morsing ] ! ] update ] then
+    [ $ 0232 l ] ?? ] drop ] =if ." m>> " ] at++ ] /morsing ] update ] then
+    [ $ 0262 l ] ?? ] drop ] =if ." m<< " ] at-- ] /morsing ] update ] then
+    [ $ 0020 l ] ?? ] drop ] =if ] morsing ] @ ] morse@ ] commit ] /morsing ] update ] then
     ] drop
   ] ;
 ' btns.handler 'btns.handler !
+
+( redraw line on display )
+: line.
+   ( ] cr ] at ] @ ] 0? ] if ] for ] space ] next ] then ." v <" )
+   ( ] morsing ] @ ] morse@ ] emit ." >" )
+   ( ] cr ] &line ] type )
+    ] &line ] oled<row ( draw cursor: )
+    ] at ] @ ] 2* ] 2* ] dup ] oled.x [ $ 0055 l ] >oled
+                 [ $ 4 l ] + ] oled.x [ $ 0055 l ] >oled
+   ] ;
+' line. 'btns.updater !
 
 ( enqueue new button state if something changed )
 : btns.maybeq ( -- )
@@ -109,6 +113,7 @@ $ 80 var &btns-watch
     ] btn.Y ] pull-up ] btn.Y' ] ground
     ] lineclear
     [ ' btns.handler l ] 'btns.handler ] !
+    [ ' line. l ] 'btns.updater ] !
     [ ' btns-watch l [ $ 20 l [ $ 20 l ] &btns-watch ] task-init
     ] line.
     ] ;
