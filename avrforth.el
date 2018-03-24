@@ -36,6 +36,7 @@
         ;; we have a 64 byte buffer, longer comments cause crashes:
         ("\\_<\([[:space:]][^)]+\)" . font-lock-warning-face)
         ;; ] prefix
+        ("\\_<\][[:space:]]+\]\\_>" . font-lock-warning-face)
         ("\\_<\][[:space:]]+[^[:space:]]+\\_>" . 'avrforth-face-compiled-word)
 
         ;; colon definition
