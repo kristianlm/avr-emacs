@@ -67,6 +67,7 @@ will color [ and l pairs (not [ and ]) so they match."
 
   (setq font-lock-defaults '(avrforth-highlights))
 
+  (remove-hook 'after-change-functions 'forth-change-function t)
   (set-syntax-table avrforth-mode-syntax-table)
   (setq font-lock-multiline t)
   (setq-local comment-start "\\ ")
