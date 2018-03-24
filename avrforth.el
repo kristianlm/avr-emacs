@@ -35,6 +35,8 @@
         ("\\_<\([[:space:]][^)]\\{1,63\\}\)" . font-lock-comment-face)
         ;; we have a 64 byte buffer, longer comments cause crashes:
         ("\\_<\([[:space:]][^)]+\)" . font-lock-warning-face)
+        ;; string
+        ("\\_<[^[:space:]]*\"[[:space:]]\\([^\"]*\\)\"" 1 font-lock-string-face )
         ;; ] prefix
         ("\\_<\][[:space:]]+\]\\_>" . font-lock-warning-face)
         ("\\_<\][[:space:]]+[^[:space:]]+\\_>" . 'avrforth-face-compiled-word)
@@ -42,8 +44,6 @@
         ;; colon definition
         ;;("\\_<[^[:space:]]*:[[:space:]]+[^[:space:]]+\\>_" . font-lock-function-name-face)
         ("\\_<[^[:space:]]*:[[:space:]]+[^[:space:]]+\\_>" . font-lock-function-name-face)
-
-        ("\\_<[^[:space:]]*\"[[:space:]]\\([^\"]*\\)\"" 1 font-lock-string-face )
         ;; l
         ("\\_<l\\_>" . font-lock-keyword-face)
         ;; [
