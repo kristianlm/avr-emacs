@@ -81,14 +81,15 @@ $ 41 var &line &line $ 41 0 fill ( 1 extra byte for null-termination )
   ] ;
 ' btns.handler 'btns.handler !
 
+: invert ] invert ] ;
+
+( print char at@ but in inverted colors )
+: /at@. ] at@ ] c>gi ] glyph@ ] invert ] swap ] invert ] swap ] glyph>oled ] ;
+
 ( redraw line on display )
 : line.
-   ( ] cr ] at ] @ ] 0? ] if ] for ] space ] next ] then ." v <" )
-   ( ] morsing ] @ ] morse@ ] emit ." >" )
-   ( ] cr ] &line ] type )
-    ] &line ] oled<row ( draw cursor: )
-    ] at ] @ ] 2* ] 2* ] dup ] oled.x [ $ 0055 l ] >oled
-                 [ $ 4 l ] + ] oled.x [ $ 0055 l ] >oled
+    ] &line ] oled<row ( draw line )
+    ] at ] @ ] 2* ] 2* ] oled.x ] /at@. ( draw cursor overlay )
    ] ;
 ' line. 'btns.updater !
 
