@@ -20,6 +20,41 @@ task.annoying task-queue ( next pause will now take us to annoying )
 task.annoying task-dequeue ( mytask should no longer be called on pause )
 ```
 
+## `if` (just checks the `z` flag)
+
+    : tst ] 0? ] if ." nonzero " ] ; ] then ." zero " ] ;
+
+## `=if`
+
+    : equal? ] ?? ] drop ] drop ] =if ." yes " ] ; ] then ." no " ] ;
+
+## `+!`
+
+    > 2 var K
+    2 var K ok
+    > K @ h.
+    K @ h. 3433  ok
+    > 0 K ! h.
+    0 K ! h. 0100  ok
+    > K @ h.
+    K @ h. 0000  ok
+    > 1 K +! h.
+    > $ abba 1 K +! h.
+    $ abba 1 K +! h. abba  ok
+    > K @ h.
+    K @ h. 0002  ok
+    > $ abba 4 K +! h.
+    $ abba 4 K +! h. abba  ok
+    > K @ h.
+    K @ h. 0006  ok
+
+## `word`
+
+    > : echo" [ $ 22 l ] word ] type ] ;
+    : echo" [ $ 22 l ] word ] type ] ; ok
+    > $ beef echo" testing 123" h.
+    $ beef echo" testing 123" h. testing 123beef  ok
+
 # words
 
 ```

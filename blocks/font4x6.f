@@ -23,6 +23,7 @@ ihere $ 60 2* iallot : fontstart l ] ;
 : oled.emit ( c -- ) ] c>gi ] glyph@ ] glyph>oled ] ;
 
 ( print RAM contents in one line )
+( ca must contain at least $ 20 bytes )
 : oled<row ( ca -- ) [ $ 0 l ] oled.x [ $ 20 l ] for ] c@+ ] oled.emit ] next ] drop ] ;
 
 
