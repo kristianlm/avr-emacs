@@ -49,7 +49,7 @@ repl:
 
 highlevel: blocks/core.f blocks/assembler.f blocks/bit.f blocks/extend.f \
            blocks/flag.f blocks/lerp.f blocks/debug.f \
-           blocks/pin.f blocks/miniboard.f blocks/font4x6.f blocks/oled.f
+           blocks/pin.f blocks/miniboard.f blocks/oled.f blocks/font4x6.f
 	for block_ in $^; do $(SEND) $$block_ ; done
 
 

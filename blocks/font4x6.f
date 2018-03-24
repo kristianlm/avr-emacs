@@ -19,7 +19,11 @@ ihere $ 60 2* iallot : fontstart l ] ;
     ] low  ] >oled ] ;
 : c>gi [ $ 20 l ] - [ $ 7f l ] and ] ;
 
-: oled.emit ] c>gi ] glyph@ ] glyph>oled ] ;
+( display c on screen )
+: oled.emit ( c -- ) ] c>gi ] glyph@ ] glyph>oled ] ;
+
+( print RAM contents in one line )
+: oled<row ( ca -- ) [ $ 0 l ] oled.x [ $ 20 l ] for ] c@+ ] oled.emit ] next ] drop ] ;
 
 
 glyphcreate
