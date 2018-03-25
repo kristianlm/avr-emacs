@@ -16,9 +16,21 @@ source repo.
 
 ![finished board](img/board.jpg)
 
+```
+  ------
+ | oled |
+  ____________
+ |            |
+ |            |
+ |   mcu      |
+ |            |
+ |_A______X_Y_|
+
+```
+
 ## Parts
 
-- [ATmmega328p](https://www.aliexpress.com/item/ATMEGA328P-ATMEGA328P-PU-DIP-28-New-parts-best-price-and-short-lead-time/32824792718.html) $1.50
+- [ATmega328p](https://www.aliexpress.com/item/ATMEGA328P-ATMEGA328P-PU-DIP-28-New-parts-best-price-and-short-lead-time/32824792718.html) $1.50
 - [128x64 SD1306 0.96" OLED](https://www.aliexpress.com/item/0-96-White-0-96-Inch-OLED-Module-128X64-OLED-LCD-LED-Display-Module-For-Arduino/32847644906.html) $2.61
 - [prototyping board](https://www.aliexpress.com/item/Solderless-Mini-Breadboard-size-3-5x4-5cm-Black-color/32804715393.html) $0.30
 - [LED](https://www.aliexpress.com/item/Smart-Electronics-100pcs-lot-F3-3MM-Round-Red-Color-Highlight-Diffused-Round-DIP-Light-Emitting-Diode/32601503663.html) (100 pieces for $0.50)
