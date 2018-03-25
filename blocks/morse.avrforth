@@ -51,12 +51,30 @@ ihere 2 + ."   etianmsurwdkgohvf_l_pjbxcyzq__" con morsetable
     ] swap ] cpick
     ] ;
 
-( ========== line buffer ========== )
+( ========== RAM line buffer ========== )
 
 $ 02 var at     0 at !
 $ 0100 con linesize ( must be 2ˣ )
 linesize var &line    &line linesize 0 fill
+
+( ========== EEPROM line buffer ========== )
+linesize evar &eline
+
+: line>e ( -- )
+    ] led.A ] set
+    ] &line ] &eline ] linesize ] c>e
+    ] slow2
+    ] led.A ] clear
+    ] ;
+: e>line ( -- ) ] &line ] &eline ] linesize ] e>c ] ;
+
+
+
+( e>line line. )
+( line>e  )
+( &eline linesize edump )
 ( &line linesize dump )
+
 : at! ( c --) ] at ] c@ ] &line ] + ] c! ] ; ( save c into at )
 : at@ ( -- c) ] at ] c@ ] &line ] + ] c@ ] ; ( get c in line from at )
 : at++ ] at ] c@ ] 1+   ] linesize ] 1- ] and   ] at ] c! ] ;
@@ -108,6 +126,7 @@ linesize var &line    &line linesize 0 fill
 : C-e ] C-a    [ $ 1f l ] at!+ ] ;
 : C-n [ $ 20 l          ] at!+ ] ;
 : C-p [ $ 20 l ] negate ] at!+ ] ;
+: C-s ] line>e ] ;
 
 ( usage: char a h. => 0061 )
 : char [ $ 20 l ] word ] c@ ] ;
@@ -120,6 +139,7 @@ linesize var &line    &line linesize 0 fill
     [ char e l ] ?? ] drop ] =if ] C-e ] then
     [ char n l ] ?? ] drop ] =if ] C-n ] then
     [ char p l ] ?? ] drop ] =if ] C-p ] then
+    [ char s l ] ?? ] drop ] =if ] C-s ] then
     ] last-mnemonic ] !
     ] ;
 ' mnemonic 'btns.special !
@@ -163,9 +183,9 @@ $ 80 var &btns-watch
     [ ' line. l ] 'btns.updater ] !
     [ ' mnemonic l ] 'btns.special ] !
     [ ' btns-watch l [ $ 20 l [ $ 20 l ] &btns-watch ] task-init
+    ] e>line
     ] line.
     ] ;
-
 
 : morse.start ] &btns-watch ] task-queue ] ;
 : morse.stop  ] &btns-watch ] task-dequeue ] ;

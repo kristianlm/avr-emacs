@@ -5,5 +5,7 @@
     ] morse.init
     ] morse.start ] ;
 
+lineclear line>e ( clean up line in eeprom )
+
 mark
 ' start it e!
