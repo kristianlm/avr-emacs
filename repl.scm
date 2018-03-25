@@ -1,8 +1,17 @@
+;;; CHICKEN Scheme repl util
+;;;
+;;; usage: csi -s repl.scm /dev/ttyUSB0
+;;;
+;;; Always prints data coming in from tty
+;;; Reads lines from stdin and waiting for ack \r on tty
+;;; before sending next line.
+;;;
+;;; This is basically exactly what send.f does, but reads from tty
+;;; continuously. I don't have the gforth foo to do this in gforth yet.
 (use posix srfi-18 srfi-13)
 
 (define debug (begin print void))
 (define tty (file-open (car (command-line-arguments)) open/rdwr))
-;;(##sys#file-nonblocking! tty)
 
 (define ttyin (open-input-file* tty))
 
