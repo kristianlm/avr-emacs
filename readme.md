@@ -199,3 +199,29 @@ task.annoying task-queue ( next pause will now take us to annoying )
 task.annoying task-dequeue ( to stop the annoying printouts )
 ```
 
+# Troubleshooting
+
+There is an ocean of things that can go wrong. Usually nothing will
+tell you what that is though.
+
+### `send.f` hangs
+
+Make sure your serial is set up ok:
+
+    for i in {{ 0 100 }} ; do echo test $i ; done > testlines
+    ./send.f /dev/ttyUSB0 testlines
+
+### Flashing is ok, but any colon-definition freezes the controller
+
+Maybe the fuse bits are wrong? You need to set them so there's a big
+bootloader. See `make fuse`.
+
+### Serial port drops characters randomly
+
+Are you sure only one program is using it the tty? Try:
+
+    sudo lsof | grep /dev/ttyACM0 # or your equivalent
+
+# License
+
+Like [avrforth], this project is Public Domain.
