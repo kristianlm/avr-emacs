@@ -1,0 +1,24 @@
+( eeprom helpers )
+
+: ec@+ ] dup $ 1 l ] + ] swap ] ec@ ] ;
+:  e@+ ] dup $ 2 l ] + ] swap ]  e@ ] ;
+: ec!+ ] dup ] -rot ] ec! $ 1 l ] + ] ;
+:  e!+ ] dup ] -rot ]  e! $ 2 l ] + ] ;
+
+: e>c1 ( ca ea -- ca' ea' )
+    ] ec@+ ( ca ea' d )
+    ] rot ( ea' d ca )
+    ] c!+ ( ea' ca' )
+    ] swap ( ca' ea' )
+    ] ;
+
+: e>c ( ca ea n -- )
+    ] 0? ] if ] for ] e>c1 ] next ] drop ] drop ] ; ] then
+    ] drop ] drop ] drop ] ;
+
+: c>e1 ( ca ea -- ea' ca' ) ] swap ] c@+ ] rot ] ec!+ ] ;
+
+: c>e ( ca ea n -- )
+    ] 0? ] if ] for ] c>e1 ] next ] drop ] drop ] ; ] then
+    ] drop ] drop ] drop ] ;
+

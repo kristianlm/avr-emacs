@@ -48,7 +48,7 @@ repl:
 	csi -s repl.scm $(TERMPORT)
 
 highlevel: blocks/core.avrforth blocks/assembler.avrforth blocks/bit.avrforth blocks/extend.avrforth \
-           blocks/flag.avrforth blocks/lerp.avrforth blocks/debug.avrforth \
+           blocks/flag.avrforth blocks/lerp.avrforth blocks/eeprom.avrforth blocks/debug.avrforth \
            blocks/pin.avrforth blocks/miniboard.avrforth blocks/oled.avrforth \
 	   blocks/font4x6.avrforth blocks/morse.avrforth blocks/main.avrforth
 	for block_ in $^; do $(SEND) $$block_ ; done
